@@ -1,6 +1,13 @@
 function getTimeRemaining() {
-  deadlineTKP = deadlineTKP-1000;
-  deadlineBL = deadlineBL - 1000;
+  if (deadlineTKP > 0){
+    deadlineTKP = deadlineTKP-1000;
+  }
+  if (deadlineBL > 0){
+    deadlineBL = deadlineBL - 1000;
+  }
+  if (deadlineBB > 0){
+    deadlineBB = deadlineBB - 1000;
+  }
   var tTKP = deadlineTKP;
   var secondsTKP = Math.floor((tTKP / 1000) % 60);
   var minutesTKP = Math.floor((tTKP / (1000 * 60)) % 60);
@@ -11,13 +18,18 @@ function getTimeRemaining() {
   var minutesBL = Math.floor((tBL / (1000 * 60)) % 60);
   var hoursBL = Math.floor((tBL / (1000 * 3600)) % 24);
 
+  var tBB = deadlineBB;
+  var secondsBB = Math.floor((tBB / 1000) % 60);
+  var minutesBB = Math.floor((tBB / (1000 * 60)) % 60);
+  var hoursBB = Math.floor((tBB / (1000 * 3600)) % 24);
+
   //var days = Math.floor(t / (1000 * 60 * 60 * 24));
   return {
-    'total': [tTKP, tBL],
+    'total': [tTKP, tBL, tBB],
     //'days': days,
-    'hours': [hoursTKP, hoursBL],
-    'minutes': [minutesTKP, minutesBL],
-    'seconds': [secondsTKP, secondsBL]
+    'hours': [hoursTKP, hoursBL, hoursBB],
+    'minutes': [minutesTKP, minutesBL, minutesBB],
+    'seconds': [secondsTKP, secondsBL, secondsBB]
   };
 }
 
@@ -33,6 +45,10 @@ function initializeClock(cls) {
   var minutesSpanBL = clock[1].querySelector('#minutesBL');
   var secondsSpanBL = clock[1].querySelector('#secondsBL');
 
+  var hoursSpanBB = clock[2].querySelector('#hoursBB');
+  var minutesSpanBB = clock[2].querySelector('#minutesBB');
+  var secondsSpanBB = clock[2].querySelector('#secondsBB');
+
   function updateClock() {
     var t = getTimeRemaining();
     //daysSpan.innerHTML = t.days;
@@ -47,6 +63,9 @@ function initializeClock(cls) {
     minutesSpanBL.innerHTML = ('0' + t.minutes[1]).slice(-2);
     secondsSpanBL.innerHTML = ('0' + t.seconds[1]).slice(-2);
 
+    hoursSpanBB.innerHTML = ('0' + t.hours[2]).slice(-2);
+    minutesSpanBB.innerHTML = ('0' + t.minutes[2]).slice(-2);
+    secondsSpanBB.innerHTML = ('0' + t.seconds[2]).slice(-2);
     if (t.total <= 0) {
       clearInterval(timeinterval);
     }
@@ -76,6 +95,17 @@ var hourHTMLBL = document.getElementById('hoursBL');
 var hourBL = parseInt(hourHTMLBL.textContent)*3600;
 
 var deadlineBL = (hourBL+minBL+secBL)*1000;
+
+var secHTMLBB = document.getElementById('secondsBB');
+var secBB = parseInt(secHTMLBB.textContent);
+
+var minHTMLBB = document.getElementById('minutesBB');
+var minBB = parseInt(minHTMLBB.textContent)*60;
+
+var hourHTMLBB = document.getElementById('hoursBB');
+var hourBB = parseInt(hourHTMLBB.textContent)*3600;
+
+var deadlineBB = (hourBL+minBB+secBB)*1000;
 
 
 initializeClock('clockdiv');

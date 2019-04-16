@@ -14,10 +14,10 @@ from FSale.models import Produk
 from FSale.flashscrape import *
 import threading
 
-t1 = threading.Thread(target=Tokopedia, kwargs={})
+t1 = threading.Thread(target=scrape, kwargs={})
 t1.setDaemon(True)
 t1.start()
 
-t2 = threading.Thread(target=Bukalapak, kwargs={})
-t2.setDaemon(True)
-t2.start()
+# t2 = threading.Thread(target=Bukalapak, kwargs={})
+# t2.setDaemon(True)
+# t2.start()

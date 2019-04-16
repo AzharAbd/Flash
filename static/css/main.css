@@ -1471,7 +1471,7 @@ h1, h2, h3, h4, h5, h6 {
         left: 28%; } }
     .active-product-area .owl-nav div:hover {
       opacity: 1; }
-  .active-product-area .owl-nav .owl-next {
+  .active-product-area .owl-nav . {
     left: auto;
     right: 35%; }
     @media (max-width: 1440px) {

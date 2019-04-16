@@ -12,12 +12,16 @@ def index(request):
     time_tokped = Time.objects.get(toko__iexact="Tokopedia")
     prods_bukalapak = Produk.objects.filter(toko__iexact= "Bukalapak")
     time_bukalapak = Time.objects.get(toko__iexact="Bukalapak")
+    prods_blibli = Produk.objects.filter(toko__iexact="Blibli")
+    time_blibli =  Time.objects.get(toko__iexact="Blibli")
     context = {
         'products_all' : prods_all,
         'products_tokped' : prods_tokped,
         'time_tokped' : time_tokped,
         'products_bukalapak' : prods_bukalapak,
         'time_bukalapak' : time_bukalapak,
+        'products_blibli' : prods_blibli,
+        'time_blibli' : time_blibli,
     }
     return render(request, 'index.html', context)
 

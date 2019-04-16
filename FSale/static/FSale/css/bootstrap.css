@@ -515,6 +515,11 @@ mark {
     height: auto
 }
 
+.shop-logo{
+    position: absolute;
+
+}
+
 .img-thumbnail {
     padding: .25rem;
     background-color: #fff;
